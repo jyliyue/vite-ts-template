@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
+import Debounced from '../test/debounce'
+import Throttle from '../test/throttle'
 defineProps<{ msg: string }>()
 
 const count = ref(0)
+const debounce = Debounced.use(function (a: number) {
+    console.log(a)
+})
+const throttle = Throttle.use(function (a: number) {
+    console.log(a)
+})
 </script>
 
 <template>
     <h1>{{ msg }}</h1>
-    <el-button>Default</el-button>
+    <el-button @click="debounce(1)">debounce</el-button>
+    <el-button @click="throttle(2)">throttle</el-button>
     <p>
         Recommended IDE setup:
         <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
