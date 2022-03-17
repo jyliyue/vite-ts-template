@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import Debounced from '../test/debounce'
 import Throttle from '../test/throttle'
 import Ajax from '../test/ajax'
+import mvue from '../test/mvue'
+import '../test/eventLoop'
 defineProps<{ msg: string }>()
 
-const count = ref(0)
 const debounce = Debounced.use(function (a: number) {
     console.log(a)
 })
@@ -19,49 +19,82 @@ const get = function () {
         console.log(response)
     })
 }
+
+const data = {
+    name: 'lily'
+}
+mvue.observer(data)
+// console.log(data)
+// 1-id,2-类，3-伪类，4-标签，5-属性，6-相邻，7-子选择器，8-后代， 9 - 通配符
+// ！important>内联样式>id>类>标签>通配符>继承>浏览器默认
 </script>
 
 <template>
+    <div class="trangle"></div>
     <h1>{{ msg }}</h1>
     <el-button @click="debounce(1)">debounce</el-button>
     <el-button @click="throttle(2)">throttle</el-button>
     <el-button @click="get">get</el-button>
-    <p>
-        Recommended IDE setup:
-        <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-        +
-        <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    </p>
-
-    <p>See <code>README.md</code> for more information.</p>
-
-    <p>
-        <a href="https://vitejs.dev/guide/features.html" target="_blank"> Vite Docs </a>
-        |
-        <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-    </p>
-
-    <button type="button" @click="count++">count is: {{ count }}</button>
-    <p>
-        Edit
-        <code>components/HelloWorld.vue</code> to test hot module replacement.
-    </p>
+    <div id="id">
+        <div class="class">
+            <div rel="bold">1</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
-a {
-    color: #42b983;
+/* 1 - id 选择器 */
+#id {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: aliceblue;
 }
-
-label {
-    margin: 0 0.5em;
+/* 2 - 类选择器 */
+.class {
+    padding: 10px;
+    background-color: aquamarine;
+}
+/* 3 - 属性选择器 */
+#id div[rel='bold'] {
+    font-size: 32px;
     font-weight: bold;
 }
+.class div:first-child {
+    font-size: 12px;
+}
+/* 4 - 伪类选择器 */
+.class div:last-child {
+    color: red;
+}
+/* 5 - 标签选择器 */
+div {
+    border: 1px solid #000;
+}
+/* 6 - 相邻选择器 */
+.class div:first-child + div {
+    color: yellow;
+}
+/* 7 - 子选择器 */
+.class > div {
+    margin-bottom: 10px;
+}
+/* 8 - 后代选择器 */
+#id div {
+    border-radius: 10px;
+}
+/* 9 - 通配符选择器 */
+* {
+    color: #000;
+}
 
-code {
-    background-color: #eee;
-    padding: 2px 4px;
-    border-radius: 4px;
-    color: #304455;
+.trangle {
+    width: 0;
+    height: 0;
+    border-top: 10px solid #000;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid transparent;
 }
 </style>

@@ -4,6 +4,10 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CupCss: typeof import('./src/components/cup-css.vue')['default']
+    'CupCss copy': typeof import('./src/components/cup-css copy.vue')['default']
+    Demo: typeof import('./src/components/demo.vue')['default']
+    DemoTpl: typeof import('./src/components/demo-tpl.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
   }
