@@ -8,8 +8,10 @@ declare module 'vue' {
     'CupCss copy': typeof import('./src/components/cup-css copy.vue')['default']
     Demo: typeof import('./src/components/demo.vue')['default']
     DemoTpl: typeof import('./src/components/demo-tpl.vue')['default']
+    'DemoTpl copy': typeof import('./src/components/demo-tpl copy.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    MVue: typeof import('./src/components/m-vue.vue')['default']
   }
 }
 

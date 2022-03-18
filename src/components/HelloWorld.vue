@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import deepClone from '../test/deepClone'
 import Debounced from '../test/debounce'
 import Throttle from '../test/throttle'
 import Ajax from '../test/ajax'
-import mvue from '../test/mvue'
 import '../test/eventLoop'
 defineProps<{ msg: string }>()
 
@@ -20,29 +18,6 @@ const get = function () {
         console.log(response)
     })
 }
-
-const data = {
-    name: 'lily'
-}
-mvue.observer(data)
-// console.log(data)
-// 1-id,2-类，3-伪类，4-标签，5-属性，6-相邻，7-子选择器，8-后代， 9 - 通配符
-// ！important>内联样式>id>类>标签>通配符>继承>浏览器默认
-const obj = {
-    name: 'jly',
-    data: {
-        layer: '1'
-    },
-    list: [
-        {
-            age: {
-                sex: 'nane'
-            }
-        }
-    ]
-}
-const newObj = deepClone(obj)
-console.log(newObj)
 </script>
 
 <template>
@@ -58,6 +33,7 @@ console.log(newObj)
             <div>3</div>
         </div>
     </div>
+    <m-vue></m-vue>
 </template>
 
 <style scoped>
